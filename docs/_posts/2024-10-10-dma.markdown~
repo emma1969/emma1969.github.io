@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Gemini"
+---
+
+# Welcome
+
+Gemini is a slimmed down HTTP in a sense. It is an application level protocol that works somewhat like HTTP mashed together with Gopher.
+
+Sample Implementation in [Ruby](https://github.com/emma1969/geminiclient).
+

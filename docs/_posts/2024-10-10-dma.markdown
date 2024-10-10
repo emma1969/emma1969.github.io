@@ -1,0 +1,38 @@
+---
+layout: post
+title:  "Dragonfly Mail Agent"
+---
+
+# Mail
+
+[DMA](https://docs.freebsd.org/en/books/handbook/mail/#dragonFly-mail-agent), the Dragonfly Mail Agent has been added to freebsd and its great. You can send mail with sendmail, which should seem obvious, but in the modern day, a lot of the sendmails shipped with distributions cant really handle smtp send thru a remote server. DMA provides that functionality.
+
+You can configure it rather easily, just plug in your info in the /etc/dma/dma.conf :
+
+
+```
+SMARTHOST smtp.gmail.com
+PORT 587
+AUTHPATH /etc/dma/auth.conf
+SECURETRANSFER
+STARTTLS
+MAILNAME gmail.com
+MASQUERADE mailaccount@
+```
+configure the password in /etc/dma/auth.conf:
+```
+mailacount@gmail.com|smtp.gmail.com:Password
+```
+If you are using gmail you will have to generate an app password from your google account.
+
+and you can add your user to /etc/mail/aliases:
+
+```
+username: mailaccount@gmail.com
+```
+run newaliases after that.
+
+now you should be able to send an email as simply as:
+```
+echo "AAAAAAA" | mail -v -s test-email testreceiver@email.com
+```
