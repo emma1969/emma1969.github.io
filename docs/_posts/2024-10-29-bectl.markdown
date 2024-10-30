@@ -1,0 +1,34 @@
+---
+layout: post
+title:  "bectl plus ZFS on freeBSD"
+---
+
+A great feature inside freeBSD is bectl, it allows you to take snapshots of your boot environment and rollback, update etc. You can perform a source update via bectl rather easily in a few commands:
+
+```
+env -i make -j6 build{world|kernel}
+
+bectl create -r update_env
+bectl mount update_env /mnt/update
+
+env -i make -j6 installkernel DESTDIR=/mnt/update
+
+env -i etcupdate -p -D /mnt/update
+
+env -i make -j6 installworld DESTDIR=/mnt/update
+
+env -i etcupdate -B -D /mnt/update
+
+bectl umount update_env
+
+bectl activate update_env
+
+shutdown -r now
+```
+Now test out your system, if it all worked out, go ahead and rename your environments appropriately.
+```
+bectl rename default old_env
+bectl rename update default
+
+bectl activate default
+```
