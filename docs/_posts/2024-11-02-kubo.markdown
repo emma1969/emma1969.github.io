@@ -30,7 +30,7 @@ in order for your a user to use kubo you must make two changes
 #add your user to kubo-go group
 pw group mod kubo-go -m username
 #change permissions of default kubo folder to group read
-chmod g+r /var/db/kubo-go/.kubo 
+chmod -Rf g+r /var/db/kubo-go/.kubo 
 ```
 
 then add this to your shell rc
