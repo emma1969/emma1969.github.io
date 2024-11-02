@@ -35,12 +35,12 @@ chmod -Rf g+r /var/db/kubo-go/.kubo
 
 then add this to your shell rc
 
-'''
+```
 export IPFS_PATH=/var/db/kubo-go/.kubo
-'''
+```
 
 you should now be able to use kubo as a user on next login, test with:
 
-'''
+```
 kubo cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
-'''
+```
