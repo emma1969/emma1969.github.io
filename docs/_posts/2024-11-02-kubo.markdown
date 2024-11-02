@@ -3,11 +3,11 @@ layout: post
 title:  "Kubo"
 ---
 
-# ipfs / kubo
+## ipfs / kubo
 
 Kubo is the go implementation of ipfs. You can install it through the FreeBSD package manager. Currently you need to make a few changes.
 
-## Options:
+# Options:
 - Edit the existing startup script and replace kubo-go with kubo
 - Create a softlink between kubo and kubo-go in /usr/local/bin
 
