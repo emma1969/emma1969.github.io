@@ -13,9 +13,9 @@ Kubo is the go implementation of ipfs. You can install it through the FreeBSD pa
 
 Do at least one of the things above, after that you need to change the part where "KUBO_PATH" is defined in command_args
 to below:
-'''
+```
 IPFS_PATH=${kubo_path} KUBO_PATH=${kubo_path}
-'''
+```
 
 After these changes you will be able to use the start up script
 
