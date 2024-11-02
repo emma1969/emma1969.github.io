@@ -1,0 +1,47 @@
+---
+layout: post
+title:  "Kubo"
+---
+
+# ipfs / kubo
+
+Kubo is the go implementation of ipfs. You can install it through the FreeBSD package manager. Currently you need to make a few changes.
+
+option a)
+  Edit the existing startup script and replace kubo-go with kubo
+option b)
+  create a softlink between kubo and kubo-go in /usr/local/bin
+  
+then you need to change the part where "KUBO_PATH" is defined in command_args
+to below:
+'''
+IPFS_PATH=${kubo_path} KUBO_PATH=${kubo_path}
+'''
+
+After these changes you will be able to use the start up script
+
+```
+doas service kubo-go enable
+doas service kubo-go start
+```
+
+in order for your a user to use kubo you must make two changes
+
+```
+#add your user to kubo-go group
+pw group mod kubo-go -m username
+#change permissions of default kubo folder to group read
+chmod g+r /var/db/kubo-go/.kubo 
+```
+
+then add this to your shell rc
+
+'''
+export IPFS_PATH=/var/db/kubo-go/.kubo
+'''
+
+you should now be able to use kubo as a user on next login, test with:
+
+'''
+kubo cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
+'''
